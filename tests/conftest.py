@@ -1,7 +1,14 @@
 import pytest
+from pathlib import Path
 from fastapi.testclient import TestClient
 from app.api import create_app
 from app.config import Settings
+
+
+def pytest_configure(config):
+    # pytest creates basetemp itself, but a fresh checkout may lack its parent.
+    if config.option.basetemp:
+        Path(config.option.basetemp).expanduser().resolve().parent.mkdir(parents=True, exist_ok=True)
 
 @pytest.fixture
 def client(tmp_path):

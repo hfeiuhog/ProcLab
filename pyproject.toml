@@ -29,6 +29,7 @@ dev = [
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["."]
 addopts = "-ra"
 markers = ["infrastructure: requires the Docker MySQL/Redis/Milvus services"]
 
