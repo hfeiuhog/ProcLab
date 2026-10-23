@@ -1,0 +1,12 @@
+{$SITE_ADDRESS} {
+    encode gzip zstd
+    header X-Content-Type-Options nosniff
+    header Referrer-Policy same-origin
+    header X-Frame-Options SAMEORIGIN
+    request_body {
+        max_size 6MB
+    }
+    reverse_proxy app:8000 {
+        flush_interval -1
+    }
+}

@@ -1,0 +1,141 @@
+name: proclab
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+services:
+  mysql:
+    image: mysql:8.4
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: industrial
+      MYSQL_USER: industrial
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Run scripts.init_env first}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Run scripts.init_env first}
+    command: ["--innodb-buffer-pool-size=256M", "--max-connections=50", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
+    ports: ["127.0.0.1:13306:3306"]
+    volumes: ["mysql-data:/var/lib/mysql"]
+    mem_limit: 768m
+    healthcheck:
+      test: ["CMD-SHELL", 'MYSQL_PWD="$$MYSQL_ROOT_PASSWORD" mysqladmin ping -h 127.0.0.1 -uroot --silent']
+      interval: 10s
+      timeout: 5s
+      retries: 20
+    logging: *logging
+  redis:
+    image: redis:7.4-alpine
+    restart: unless-stopped
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD:?Run scripts.init_env first}
+    command: ["redis-server", "--appendonly", "yes", "--requirepass", "${REDIS_PASSWORD}", "--maxmemory", "128mb", "--maxmemory-policy", "allkeys-lru"]
+    ports: ["127.0.0.1:16379:6379"]
+    volumes: ["redis-data:/data"]
+    mem_limit: 192m
+    healthcheck:
+      test: ["CMD-SHELL", 'REDISCLI_AUTH="$$REDIS_PASSWORD" redis-cli ping']
+      interval: 10s
+      timeout: 3s
+      retries: 10
+    logging: *logging
+  etcd:
+    image: quay.io/coreos/etcd:v3.5.25
+    restart: unless-stopped
+    environment:
+      ETCD_AUTO_COMPACTION_MODE: revision
+      ETCD_AUTO_COMPACTION_RETENTION: "1000"
+      ETCD_QUOTA_BACKEND_BYTES: "1073741824"
+      ETCD_SNAPSHOT_COUNT: "50000"
+    command: ["etcd", "--advertise-client-urls=http://etcd:2379", "--listen-client-urls=http://0.0.0.0:2379", "--data-dir=/etcd"]
+    volumes: ["etcd-data:/etcd"]
+    mem_limit: 256m
+    healthcheck:
+      test: ["CMD", "etcdctl", "endpoint", "health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    logging: *logging
+  minio:
+    image: minio/minio:RELEASE.2024-12-18T13-15-44Z
+    restart: unless-stopped
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-industrial}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:?Run scripts.init_env first}
+    command: ["minio", "server", "/minio_data", "--console-address", ":9001"]
+    volumes: ["minio-data:/minio_data"]
+    mem_limit: 512m
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    logging: *logging
+  milvus:
+    image: milvusdb/milvus:v2.6.17
+    restart: unless-stopped
+    command: ["milvus", "run", "standalone"]
+    environment:
+      ETCD_ENDPOINTS: etcd:2379
+      MINIO_ADDRESS: minio:9000
+      MINIO_ACCESS_KEY_ID: ${MINIO_ROOT_USER:-industrial}
+      MINIO_SECRET_ACCESS_KEY: ${MINIO_ROOT_PASSWORD}
+      MQ_TYPE: woodpecker
+      DEPLOY_MODE: STANDALONE
+    volumes:
+      - milvus-data:/var/lib/milvus
+      - ./deploy/milvus.yaml:/milvus/configs/user.yaml:ro
+    ports: ["127.0.0.1:19530:19530"]
+    mem_limit: 3g
+    shm_size: 256m
+    depends_on:
+      etcd: {condition: service_healthy}
+      minio: {condition: service_healthy}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9091/healthz"]
+      interval: 15s
+      timeout: 5s
+      start_period: 60s
+      retries: 20
+    logging: *logging
+  app:
+    profiles: ["full"]
+    build: .
+    image: ${APP_IMAGE:-proclab:3.0.0}
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      APP_ENV: production
+      DATABASE_URL: mysql+pymysql://industrial:${MYSQL_PASSWORD}@mysql:3306/industrial?charset=utf8mb4
+      REDIS_URL: redis://:${REDIS_PASSWORD}@redis:6379/0
+      MILVUS_URI: http://milvus:19530
+      GRAPH_MODE: langgraph
+      MAX_WORKERS: "${MAX_WORKERS:-2}"
+      RUNTIME_DIR: /app/runtime
+      TMPDIR: /app/runtime/tmp
+      HF_HOME: /app/runtime/cache/huggingface
+      LOCAL_TEMP_DIR: /app/runtime/tmp
+    volumes: ["app-runtime:/app/runtime"]
+    mem_limit: 1g
+    depends_on:
+      mysql: {condition: service_healthy}
+      redis: {condition: service_healthy}
+      milvus: {condition: service_healthy}
+    logging: *logging
+  proxy:
+    profiles: ["full"]
+    image: nginx:1.28-alpine
+    restart: unless-stopped
+    ports: ["${HTTP_BIND:-127.0.0.1}:${HTTP_PORT:-8080}:80"]
+    volumes: ["./deploy/nginx.conf:/etc/nginx/nginx.conf:ro"]
+    mem_limit: 64m
+    depends_on:
+      app: {condition: service_healthy}
+    logging: *logging
+volumes:
+  mysql-data:
+  redis-data:
+  etcd-data:
+  minio-data:
+  milvus-data:
+  app-runtime:
+

@@ -1,0 +1,27 @@
+name: Research experiment
+description: Propose a concrete, repeatable study or bounded tool.
+title: "[Research] "
+labels: ["research"]
+body:
+  - type: textarea
+    id: hypothesis
+    attributes:
+      label: Research question or hypothesis
+    validations:
+      required: true
+  - type: textarea
+    id: design
+    attributes:
+      label: Baseline, intervention, controls and metrics
+    validations:
+      required: true
+  - type: textarea
+    id: reproducibility
+    attributes:
+      label: Data, configuration and reproducibility plan
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Boundaries, failure cases and limitations

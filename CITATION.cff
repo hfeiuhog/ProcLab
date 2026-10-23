@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "Please cite this software and identify the release or commit used."
+type: software
+title: "ProcLab: A Research Workbench for Evidence-Driven Industrial Agents"
+authors:
+  - name: "hfeiuhog"
+version: 3.0.0
+date-released: 2026-10-23
+url: "https://github.com/hfeiuhog/ProcLab"
+repository-code: "https://github.com/hfeiuhog/ProcLab"
+license: MIT
+keywords:
+  - multi-agent-systems
+  - industrial-ai
+  - evidence-grounding
+  - scientific-tools
+  - retrieval-augmented-generation
+  - governed-analytics
+abstract: >-
+  A research prototype combining bounded agent orchestration, source provenance,
+  independent numerical checks, governed analytics, and versioned results over
+  synthetic process fixtures. Supports offline rules and optional model-backed experiments.

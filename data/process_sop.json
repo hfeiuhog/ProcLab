@@ -1,0 +1,16 @@
+[
+  {
+    "doc_id":"SOP-003","title":"模拟热压成型工艺规范","revision":"R2","status":"active",
+    "section":"2.1","content":"热压成型批次验收工艺参数：温度 180-220 ℃，压力 1.80-2.20 MPa，物料黏度 40-50 Pa·s。测量参数超出范围须记录异常并进行人工复核；不能仅凭超限确定根本原因。",
+    "limits":{"temperature_c":{"min":180,"max":220,"unit":"℃"},"pressure_mpa":{"min":1.8,"max":2.2,"unit":"MPa"},"viscosity_pas":{"min":40,"max":50,"unit":"Pa·s"}}
+  },
+  {
+    "doc_id":"WI-007","title":"模拟质量异常处置指引","revision":"R1","status":"active",
+    "section":"4.2","content":"异常分析应核对批次时间、设备日志、温度、压力、黏度测量值及传感器校准记录。数据缺失、规范冲突或工具故障时不得给出确定性原因，须转人工复核。分析报告应引用规范编号与数据行号。",
+    "limits":{}
+  },
+  {
+    "doc_id":"SOP-003","title":"模拟热压成型工艺规范（历史废止）","revision":"R1","status":"obsolete",
+    "section":"2.1","content":"历史版本，仅作版本管理演示；不得用于当前批次的参数验收。","limits":{"temperature_c":{"min":170,"max":230,"unit":"℃"}}
+  }
+]

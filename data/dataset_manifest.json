@@ -1,0 +1,38 @@
+{
+  "measurement_rows": 487,
+  "batches": 63,
+  "scenarios": [
+    "normal",
+    "high_temperature",
+    "high_pressure",
+    "high_viscosity",
+    "multiple",
+    "missing",
+    "invalid",
+    "boundary",
+    "drift",
+    "unit_suspect"
+  ],
+  "seed": 20261020,
+  "origin": "synthetic",
+  "units": {
+    "temperature_c": "℃",
+    "pressure_mpa": "MPa",
+    "viscosity_pas": "Pa·s"
+  },
+  "split_policy": "整批划分；B-251至B-260为保留验收集，各含一种情形；保留集并非真实外部泛化测试。",
+  "holdout_batches": [
+    "B-251",
+    "B-252",
+    "B-253",
+    "B-254",
+    "B-255",
+    "B-256",
+    "B-257",
+    "B-258",
+    "B-259",
+    "B-260"
+  ],
+  "warning": "所有测量与限值均为自制模拟，不是产线数据；unit_suspect只代表量级异常，工具不自动推断或转换单位。",
+  "sha256": "03af7ec7a483ba1055b4d785f1a585fc78e64b09d77bcaf4626888c5bbe90f47"
+}

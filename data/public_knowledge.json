@@ -1,0 +1,156 @@
+[
+  {
+    "doc_id": "PUBLIC-NIST-CAPABILITY",
+    "title": "NIST：过程能力分析的前提",
+    "revision": "snapshot-2026-10",
+    "status": "active",
+    "section": "6.1.6",
+    "content": "过程能力指数用于比较稳定过程的输出变异与规格界限。计算和解释能力指数前，应检查过程稳定性及分布假设；少量批次样本的均值和标准差只能作为描述统计，不能直接证明过程能力。此条为公开资料的中文概述，不是生产验收标准。",
+    "origin": "public_summary",
+    "source": "https://www.itl.nist.gov/div898/handbook/pmc/section1/pmc16.htm",
+    "limits": {}
+  },
+  {
+    "doc_id": "PUBLIC-SCIPY-ODE",
+    "title": "SciPy：常微分方程初值问题与数值求解",
+    "revision": "snapshot-2026-10",
+    "status": "active",
+    "section": "solve_ivp",
+    "content": "工程动态模型可写为 dy/dt=f(t,y)，通过初值、时间区间和参数计算轨迹。ProcLab 的固定升温仿真使用自实现 RK4 与解析解核对；方案设计路径在独立子进程调用 SciPy solve_ivp 与 brentq，并用解析解独立复核。模型是一阶集中参数近似，不代表真实 CAE 或材料固化仿真。",
+    "origin": "public_summary",
+    "source": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html",
+    "limits": {}
+  },
+  {
+    "doc_id": "PUBLIC-NIST-CP",
+    "title": "Cp 指标与规格宽度",
+    "content": "稳定、近似正态过程的 Cp 将规格宽度与六倍过程标准差比较。该指标本身不反映均值偏心，计算结果还受样本估计误差影响。项目每批只有少量模拟测量，不输出 Cp 能力结论。",
+    "source": "https://www.itl.nist.gov/div898/handbook/pmc/section1/pmc16.htm",
+    "section": "6.1.6",
+    "revision": "snapshot-2026-10",
+    "status": "active",
+    "origin": "public_summary",
+    "limits": {}
+  },
+  {
+    "doc_id": "PUBLIC-NIST-CPK",
+    "title": "Cpk 与均值偏移",
+    "content": "Cpk 同时考虑过程均值到上、下规格界限的距离以及变异；不能把参数均值位于区间内等同于过程能力充分。此处是统计方法概述，不是产品放行规则。",
+    "source": "https://www.itl.nist.gov/div898/handbook/pmc/section1/pmc16.htm",
+    "section": "6.1.6",
+    "revision": "snapshot-2026-10",
+    "status": "active",
+    "origin": "public_summary",
+    "limits": {}
+  },
+  {
+    "doc_id": "PUBLIC-NIST-NORMALITY",
+    "title": "过程能力的分布假设",
+    "content": "常见 Cp/Cpk 指数依赖过程受控及分布假设。分布不近似正态时，直接套用正态能力指数可能失真，应考虑变换或适合该分布的指标。",
+    "source": "https://www.itl.nist.gov/div898/handbook/pmc/section1/pmc16.htm",
+    "section": "6.1.6",
+    "revision": "snapshot-2026-10",
+    "status": "active",
+    "origin": "public_summary",
+    "limits": {}
+  },
+  {
+    "doc_id": "PUBLIC-NIST-SPC",
+    "title": "过程监控与时间顺序",
+    "content": "统计过程控制关注随时间变化的过程表现，监控结果可提示需要调查的变化。单次参数超出规格或样本均值发生变化，不直接说明设备故障的原因。",
+    "source": "https://www.itl.nist.gov/div898/handbook/pmc/section1/pmc12.htm",
+    "section": "6.1.2",
+    "revision": "snapshot-2026-10",
+    "status": "active",
+    "origin": "public_summary",
+    "limits": {}
+  },
+  {
+    "doc_id": "PUBLIC-NIST-MONITOR",
+    "title": "监控与事后检查",
+    "content": "过程监控帮助理解生产过程中的变化，而最终产品检查关注结果。工艺测量记录的比较不能替代全面的产品检验。",
+    "source": "https://www.itl.nist.gov/div898/handbook/pmc/section1/pmc12.htm",
+    "section": "6.1.2",
+    "revision": "snapshot-2026-10",
+    "status": "active",
+    "origin": "public_summary",
+    "limits": {}
+  },
+  {
+    "doc_id": "PUBLIC-NIST-SAMPLING",
+    "title": "验收抽样的用途",
+    "content": "验收抽样根据批中抽取的样本决定是否接收整批，它与持续过程改进及全面检验的用途不同；本项目没有实现正式的验收抽样方案。",
+    "source": "https://www.itl.nist.gov/div898/handbook/pmc/section2/pmc21.htm",
+    "section": "6.2.1",
+    "revision": "snapshot-2026-10",
+    "status": "active",
+    "origin": "public_summary",
+    "limits": {}
+  },
+  {
+    "doc_id": "PUBLIC-NIST-SAMPLING-RISK",
+    "title": "抽样结论的边界",
+    "content": "批次抽样会涉及接收或拒收的风险及抽样方案选择。不能因为几个模拟测量位于参数范围内，就声称整批所有产品均合格。",
+    "source": "https://www.itl.nist.gov/div898/handbook/pmc/section2/pmc21.htm",
+    "section": "6.2.1",
+    "revision": "snapshot-2026-10",
+    "status": "active",
+    "origin": "public_summary",
+    "limits": {}
+  },
+  {
+    "doc_id": "PUBLIC-SCIPY-INITIAL",
+    "title": "初值与微分方程输入",
+    "content": "常微分方程初值求解需要右端函数、时间范围与初始状态；选择模型与输入数据是求解的前提，数值算法不会自动修正不适用的物理假设。",
+    "source": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html",
+    "section": "solve_ivp/input",
+    "revision": "snapshot-2026-10",
+    "status": "active",
+    "origin": "public_summary",
+    "limits": {}
+  },
+  {
+    "doc_id": "PUBLIC-SCIPY-TOLERANCE",
+    "title": "相对误差与绝对误差",
+    "content": "数值求解器可通过相对和绝对容差控制局部误差。误差阈值通过不表示模型已完成实验标定，也不证明物理预测准确。",
+    "source": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html",
+    "section": "solve_ivp/tolerances",
+    "revision": "snapshot-2026-10",
+    "status": "active",
+    "origin": "public_summary",
+    "limits": {}
+  },
+  {
+    "doc_id": "PUBLIC-SCIPY-METHOD",
+    "title": "刚性与求解方法",
+    "content": "常微分方程求解包含显式和隐式方法，刚性问题需要合适的方法选择。项目的固定步长 RK4 仅用于简化一阶模型，不构成通用工程仿真求解平台。",
+    "source": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html",
+    "section": "solve_ivp/method",
+    "revision": "snapshot-2026-10",
+    "status": "active",
+    "origin": "public_summary",
+    "limits": {}
+  },
+  {
+    "doc_id": "PUBLIC-SCIPY-EVENT",
+    "title": "目标事件与求解终止",
+    "content": "事件函数可描述状态达到指定条件时的零点，用于定位事件时间。项目使用解析反算并通过二分复算达到目标温度的时间，没有调用 solve_ivp 事件接口。",
+    "source": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html",
+    "section": "solve_ivp/events",
+    "revision": "snapshot-2026-10",
+    "status": "active",
+    "origin": "public_summary",
+    "limits": {}
+  },
+  {
+    "doc_id": "PUBLIC-SCIPY-OUTPUT",
+    "title": "求解输出与连续插值",
+    "content": "输出采样时刻与积分步长是不同概念，连续解插值可用于查询区间内状态。绘制更多采样点本身不会提高模型物理精度。",
+    "source": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html",
+    "section": "solve_ivp/output",
+    "revision": "snapshot-2026-10",
+    "status": "active",
+    "origin": "public_summary",
+    "limits": {}
+  }
+]

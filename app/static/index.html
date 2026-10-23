@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>ProcLab · 工业多智能体平台</title><link rel="icon" href="/static/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/static/style.css?v=voice-20261021-2"><script src="/static/history.js?v=voice-20261021-2" defer></script><script src="/static/app.js?v=voice-20261021-2" defer></script><script src="/static/voice.js?v=voice-20261021-2" defer></script></head>
+<body>
+<section id="auth-screen" class="auth-screen" aria-label="登录工作空间">
+  <div class="auth-card"><div class="brand-mark">p<span>·</span></div><p class="eyebrow">PROCLAB · 工业工艺智能体</p><h1 id="auth-title">登录你的分析空间</h1><p class="modal-description" id="auth-description">连接工艺知识、计算工具与审核流程。<br>登录后即可开始分析。</p>
+    <div class="auth-tabs" aria-label="登录或注册"><button id="auth-login" type="button" class="selected" aria-pressed="true">登录</button><button id="auth-register" type="button" aria-pressed="false">注册账号</button></div>
+    <form id="login-form"><label for="login-username">账号</label><input id="login-username" name="username" autocomplete="username" required maxlength="80"><label for="login-password">密码</label><input id="login-password" name="password" type="password" autocomplete="current-password" required maxlength="256"><small id="register-help" hidden>账号支持 2–60 位字母、数字、下划线、点和短横线；密码至少 8 位，包含大写字母、小写字母、数字和特殊字符。</small><div id="register-confirm" hidden><label for="register-password-confirm">确认密码</label><input id="register-password-confirm" type="password" autocomplete="new-password" maxlength="256"></div><p id="login-error" class="login-error" role="alert"></p><button id="login-submit" class="primary-button" type="submit">登录工作空间</button></form><small id="auth-footnote">没有账号？点击“注册账号”，注册后即可使用分析功能。</small>
+  </div>
+</section>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand-row"><a class="brand" href="/" aria-label="ProcLab 首页"><span class="brand-mark">p<span>·</span></span><span>ProcLab<small>工业多智能体平台</small></span></a><div class="sidebar-header-actions"><button type="button" id="history-search" class="icon-button" aria-label="搜索历史分析" title="搜索历史分析"><span data-icon="search"></span></button><button type="button" id="sidebar-toggle" class="icon-button" aria-label="隐藏侧边栏" title="隐藏侧边栏" aria-controls="sidebar" aria-expanded="true"><span data-icon="sidebar"></span></button></div></div>
+  <button class="new-chat" id="new-chat"><span data-icon="plus"></span>新的分析<span class="keycap">Ctrl K</span></button>
+  <nav class="navigation"><button class="nav-item active" id="nav-chat"><span data-icon="chat"></span>分析工作台</button><button class="nav-item" id="nav-analytics"><span data-icon="chart"></span>数据查询</button><button class="nav-item" id="knowledge"><span data-icon="book"></span>工艺知识库<span class="nav-count" id="knowledge-count">—</span></button><button class="nav-item" id="memories"><span data-icon="brain"></span>长期记忆</button><button class="nav-item" id="review-center"><span data-icon="shield"></span>审核与修复</button><button class="nav-item" id="workflow"><span data-icon="wave"></span>工作流程</button></nav>
+  <div class="history-heading"><span>最近的分析</span><span data-icon="clock"></span></div><div class="history" id="history"><p class="muted history-empty">从一个工艺问题开始</p></div>
+  <div class="sidebar-bottom"><button id="logout" class="nav-item"><span data-icon="close"></span>退出登录</button><div class="workspace-tag"><span class="status-dot"></span>独立演示工作空间</div><button class="profile" id="settings"><span class="avatar">Z</span><span>我的工作空间<small>模拟数据 · 独立项目</small></span><span data-icon="settings"></span></button></div>
+  <div id="sidebar-resizer" class="sidebar-resizer" role="separator" aria-label="调整侧边栏宽度" aria-orientation="vertical" aria-valuemin="224" aria-valuemax="440" aria-valuenow="246" tabindex="0" title="拖动调整宽度；方向键微调，双击恢复默认"></div>
+</aside>
+<div class="app" id="app">
+  <header class="topbar"><div class="breadcrumb"><button class="icon-button mobile-menu" id="menu" aria-label="显示侧边栏" title="显示侧边栏" aria-controls="sidebar" aria-expanded="false"><span data-icon="sidebar"></span></button><span id="workspace-title">工艺分析</span><span class="slash">/</span><strong id="conversation-title">新的分析</strong></div><div class="top-actions"><span class="model-label" id="model-label"><span class="status-dot"></span>正在连接</span><button class="icon-button" id="toggle-inspector" title="查看执行与证据" aria-label="查看执行与证据"><span data-icon="panel"></span></button></div></header>
+  <div class="body-layout">
+    <section class="chat-area">
+      <main id="chat-scroll" class="chat-scroll">
+        <section class="welcome" id="welcome">
+          <div class="eyebrow"><span class="tiny-mark">p·</span> YOUR PROCESS COPILOT</div>
+          <h1>让每一步决策，<br><span>都有据可循。</span></h1>
+          <p id="dataset-caption" class="eyebrow"></p><p class="intro">从工艺问题出发，连接知识、计算与验证。<br>按任务组织专业团队，核验依据并保留结果版本。</p>
+          <div class="suggestions">
+            <button class="suggestion" data-scenario="anomaly"><span class="scenario-icon mint" data-icon="chart"></span><strong>分析批次异常<span>↗</span></strong><p>核对 B-102 参数，定位超限项并追溯证据</p><small>参数分析 · 规范校验</small></button>
+            <button class="suggestion" data-scenario="simulation"><span class="scenario-icon peach" data-icon="wave"></span><strong>推演升温过程<span>↗</span></strong><p>模拟温度变化，反算目标温度所需时间</p><small>简化模型 · 独立复算</small></button>
+            <button class="suggestion" data-scenario="review"><span class="scenario-icon lilac" data-icon="shield"></span><strong>处理证据不足<span>↗</span></strong><p>分析 B-103 缺失数据，进入人工复核</p><small>异常处理 · 人机协同</small></button>
+            <button class="suggestion" data-scenario="knowledge"><span class="scenario-icon sand" data-icon="book"></span><strong>查找工艺依据<span>↗</span></strong><p>检索现行规范，区分模拟标准与公开资料</p><small>知识检索 · 版本追踪</small></button>
+          </div>
+          <div class="platform-starters"><button type="button" id="start-design">设计升温方案：试算与调整 ↗</button><button type="button" id="start-analytics">按设备查询超限比例 ↗</button><button type="button" id="start-composite">批次 + 历史 + 升温复合分析 ↗</button></div><div class="welcome-foot"><span data-icon="check"></span>真实调用工具<span class="dot-separator">·</span>独立校验计算<span class="dot-separator">·</span>保留完整证据链</div>
+        </section>
+        <section class="welcome analytics-welcome" id="analytics-welcome" hidden>
+          <p class="eyebrow">生产数据 · 自然语言查询</p><h1>用一句话，<br><span>查清生产数据。</span></h1>
+          <p class="intro">无需编写 SQL。例如“各设备有多少批次超限？”<br>系统查询数据后，展示统计结果、计算口径与来源。</p>
+          <div class="query-examples"><button type="button" data-query="按设备统计全部批次的超限批次比例">各设备的超限批次比例</button><button type="button" data-query="按设备统计全部批次总数">各设备的批次总数</button><button type="button" data-query="按设备查询全部数据的完整率">各设备的数据完整率</button></div>
+          <p class="data-scope-note">当前为模拟工业数据，数据截至 2026-09-08。可查询批次数、超限比例与完整率；暂未接入真实产线。</p>
+          <button type="button" class="secondary-button" id="query-help">数据查询和工艺分析有什么区别？</button>
+        </section>
+        <div class="messages" id="messages" hidden></div>
+      </main>
+      <div class="composer-wrap">
+        <form class="composer" id="composer">
+          <label class="sr-only" for="question">描述你的工艺分析任务</label><textarea id="question" rows="2" maxlength="12000" placeholder="描述工艺问题，或从上方选一个分析开始…" required minlength="1"></textarea>
+          <div id="attached-evidence" class="attached-files" hidden></div>
+          <div class="composer-bottom"><div class="composer-leading">
+            <button type="button" id="composer-add" class="composer-icon" aria-label="添加资料和工具" title="添加资料和工具" aria-haspopup="menu" aria-controls="attachment-menu" aria-expanded="false"><span data-icon="plus"></span></button>
+            <button type="button" id="mode-toggle" class="thought-toggle" aria-label="思考强度：快速" title="选择思考强度" aria-haspopup="menu" aria-controls="mode-menu" aria-expanded="false"><span data-icon="spark"></span><span id="mode-label">快速</span><span data-icon="chevron"></span></button>
+            <select id="analysis-mode" hidden aria-label="回答模式"><option value="fast">快速</option><option value="thinking">深度思考</option></select>
+          </div><div id="voice-status" class="voice-status" hidden>
+            <button type="button" id="voice-cancel" class="voice-cancel" aria-label="取消听写" title="取消听写（Esc）"><span data-icon="close"></span></button>
+            <div class="voice-feedback"><div class="voice-caption"><span id="voice-message" role="status" aria-live="polite"></span><span id="voice-time" class="voice-time" aria-label="听写时长" hidden>0:00 / 1:00</span></div><svg id="voice-waveform" class="voice-waveform" viewBox="0 0 240 40" preserveAspectRatio="none" aria-hidden="true" hidden><path id="voice-wave-path" d="M0 20H240"></path></svg></div>
+            <button type="button" id="voice-stop" class="voice-stop" aria-label="停止听写" title="停止听写并转成文字" hidden><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"></rect></svg></button>
+          </div><div class="composer-trailing">
+            <button type="button" id="voice-input" class="composer-icon" aria-label="语音输入" title="语音输入"><span data-icon="mic"></span></button>
+            <button class="send-button" id="send" type="submit" aria-label="发送分析任务"><span data-icon="arrow"></span></button>
+          </div></div>
+
+        </form>
+        <p class="composer-hint">基于模拟工艺数据与公开资料。关键结论请核对证据。<span>Enter 发送 · Shift Enter 换行</span></p>
+      </div>
+    </section>
+    <aside class="inspector" id="inspector" hidden><div class="inspector-head"><strong>分析详情</strong><button class="icon-button" id="close-inspector" aria-label="关闭分析详情"><span data-icon="close"></span></button></div><div class="inspector-tabs"><button class="selected" id="tab-run">执行过程</button><button id="tab-evidence">证据来源</button><button id="tab-team">任务分工与进度</button><button id="tab-sql">指标与 SQL</button></div><div id="inspector-content" class="inspector-content"></div><div class="inspector-footer"><span data-icon="shield"></span>保留模型与工具的真实执行记录</div></aside>
+  </div>
+</div>
+<div id="attachment-menu" class="composer-menu attachment-menu" role="menu" aria-label="资料和工具" hidden>
+  <button type="button" id="upload-file" role="menuitem"><span data-icon="plus"></span><span>上传文件并解析<small>PDF、图片、Word、TXT、Markdown</small></span></button>
+  <button type="button" id="parse-document" role="menuitem"><span data-icon="book"></span><span>资料与解析记录<small>查看、修订、审核已有文件</small></span></button>
+  <button type="button" id="select-reviewed" role="menuitem"><span data-icon="link"></span><span>添加已审核资料<small>用于这一次提问</small></span></button>
+  <div class="menu-divider"></div>
+  <button type="button" id="composer-settings" role="menuitem"><span data-icon="settings"></span><span>数据范围与计算参数</span></button>
+  <button type="button" id="usage-help" role="menuitem"><span data-icon="wave"></span><span>发送后会怎样处理？</span></button>
+</div>
+<div id="mode-menu" class="composer-menu thought-menu" role="menu" aria-label="思考强度" hidden>
+  <p class="menu-caption">思考强度</p>
+  <button type="button" role="menuitemradio" data-analysis-mode="fast" aria-checked="true"><span><strong>快速</strong><small>适合日常问答，按任务选择处理方式</small></span><span class="mode-check" aria-hidden="true">✓</span></button>
+  <button type="button" role="menuitemradio" data-analysis-mode="thinking" aria-checked="false"><span><strong>深度思考</strong><small>使用推理模型，适合复杂问题，通常更慢</small></span><span class="mode-check" aria-hidden="true">✓</span></button>
+  <p class="menu-footnote">工艺分析中的来源检查与数值复算始终启用。</p>
+</div>
+<input type="file" id="composer-file" accept=".pdf,.png,.jpg,.jpeg,.docx,.txt,.md" hidden>
+<dialog id="analysis-options" class="analysis-settings"><div class="modal-top"><h2>数据范围与计算参数</h2><button type="button" id="close-analysis-options" class="icon-button" aria-label="关闭数据范围设置"><span data-icon="close"></span></button></div>
+  <p class="modal-description">通常不用设置，直接提问即可。只有需要切换项目、指定批次或调整升温参数时才修改。</p>
+  <div class="scope-fields">
+    <label id="project-field">数据所属项目<select id="project"><option value="">正在读取项目…</option></select><small>名称为虚构模拟项目，用于区分各账号的分析空间。</small></label>
+    <label>生产批次<select id="batch"><option value="">不指定，从问题识别</option></select><small>例如直接问“分析 B-102 有哪些异常”，系统会识别 B-102，无需在这里再选。</small></label>
+  </div>
+  <select id="intent" hidden><option value="auto">自动</option><option value="analytics">数据查询</option><option value="composite">复合分析</option><option value="chat">对话</option><option value="extract">字段抽取</option><option value="reasoning">规则推理</option><option value="batch">批次分析</option><option value="simulation">升温仿真</option><option value="optimization">升温方案设计</option><option value="knowledge">知识检索</option></select>
+  <select id="fault" hidden><option value="none">关闭</option><option value="once">首次超时</option><option value="always">持续超时</option></select>
+  <button type="button" id="toggle-heating" class="secondary-button" aria-expanded="false">调整升温仿真参数</button>
+  <div class="heating-inputs" id="heating-inputs" hidden><label>初温 ℃<input id="initial_c" type="number" min="-20" max="100" value="25" step="any"></label><label>炉温 ℃<input id="oven_c" type="number" min="181" max="220" value="210" step="any"></label><label>目标 ℃<input id="target_c" type="number" min="180" max="219" value="180" step="any"></label><label>时间常数 s<input id="tau_s" type="number" min="10" max="3600" value="180" step="any"></label><label>时长 s<input id="duration_s" type="number" min="1" max="14400" value="600" step="any"></label></div>
+  <div class="settings-actions"><button type="button" id="reset-analysis-options" class="secondary-button">恢复默认</button><button type="button" id="apply-analysis-options" class="primary-button">完成</button></div>
+</dialog>
+<dialog id="history-search-dialog" class="history-search-dialog" aria-labelledby="history-search-title"><div class="modal-top"><h2 id="history-search-title">搜索历史分析</h2><button type="button" id="history-search-close" class="icon-button" aria-label="关闭历史搜索"><span data-icon="close"></span></button></div><label class="sr-only" for="history-search-input">搜索分析名称或以前提过的问题</label><div class="history-search-field"><span data-icon="search"></span><input id="history-search-input" type="search" maxlength="200" placeholder="搜索分析名称或以前提过的问题…" autocomplete="off"></div><p class="history-search-status" id="history-search-status" role="status"></p><div id="history-search-results" class="history-search-results" aria-label="历史分析搜索结果"></div></dialog>
+<dialog id="modal"><div class="modal-top"><h2 id="modal-title"></h2><button class="icon-button" id="modal-close" aria-label="关闭弹窗"><span data-icon="close"></span></button></div><div id="modal-body"></div></dialog>
+<div class="toast" id="toast" role="status" hidden></div>
+</body></html>

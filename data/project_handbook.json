@@ -1,0 +1,233 @@
+[
+  {
+    "doc_id": "GUIDE-SCOPE",
+    "title": "项目适用范围",
+    "content": "本项目是开源研究演示用工业工艺 Agent，测量与限值均为自制模拟。可展示任务拆解、受限工具调度、原始行号引用、独立复算、异常处理和人工复核。不能连接真实设备执行参数控制。",
+    "source": "data/project_handbook.json",
+    "section": "scope",
+    "revision": "R1",
+    "status": "active",
+    "origin": "project_authored",
+    "limits": {}
+  },
+  {
+    "doc_id": "GUIDE-VERSION",
+    "title": "现行版本与历史版本",
+    "content": "分析批次必须使用唯一现行 SOP-003 R2；历史 R1 只能用于版本展示。引用保留文档编号、修订号和章节，向量检索结果不能成为规范的权威副本。",
+    "source": "data/project_handbook.json",
+    "section": "version",
+    "revision": "R1",
+    "status": "active",
+    "origin": "project_authored",
+    "limits": {}
+  },
+  {
+    "doc_id": "GUIDE-MISSING",
+    "title": "缺失测量值如何处理",
+    "content": "空值不能补成零值，也不能让模型猜测压力、温度或黏度。工具列出缺失字段，独立验证进入人工复核，人工批准也只能发布带缺失说明的限制性报告。",
+    "source": "data/project_handbook.json",
+    "section": "missing",
+    "revision": "R1",
+    "status": "active",
+    "origin": "project_authored",
+    "limits": {}
+  },
+  {
+    "doc_id": "GUIDE-INVALID",
+    "title": "无效数值与传感器错误",
+    "content": "NaN、无穷大和传感器错误字符串不是有效测量。分析与独立复算都应检查数值有限性，描述统计只使用有效观测值并保留缺失风险。",
+    "source": "data/project_handbook.json",
+    "section": "invalid",
+    "revision": "R1",
+    "status": "active",
+    "origin": "project_authored",
+    "limits": {}
+  },
+  {
+    "doc_id": "GUIDE-BOUNDARY",
+    "title": "工艺限值边界",
+    "content": "模拟限值采用闭区间比较，等于上下限不计为超限。显示值的小数格式不能改变实际比较语义，独立 Decimal 复算用于发现阈值或引用偏差。",
+    "source": "data/project_handbook.json",
+    "section": "boundary",
+    "revision": "R1",
+    "status": "active",
+    "origin": "project_authored",
+    "limits": {}
+  },
+  {
+    "doc_id": "GUIDE-UNIT",
+    "title": "单位和量级异常",
+    "content": "CSV列名固定表示摄氏度、MPa和Pa·s。发现量级异常时提示核对采集单位、传感器量程和转换记录；系统不把极大压力自动除以1000，也不推断数值必然来自kPa。",
+    "source": "data/project_handbook.json",
+    "section": "unit",
+    "revision": "R1",
+    "status": "active",
+    "origin": "project_authored",
+    "limits": {}
+  },
+  {
+    "doc_id": "GUIDE-ROOTCAUSE",
+    "title": "超限与根因的区别",
+    "content": "温度、压力或黏度超限只说明与当前模拟规范存在偏差。确认根因需要校准记录、设备日志、原料和重复测量，不能从几条异常数值直接判断加热器或泵损坏。",
+    "source": "data/project_handbook.json",
+    "section": "rootcause",
+    "revision": "R1",
+    "status": "active",
+    "origin": "project_authored",
+    "limits": {}
+  },
+  {
+    "doc_id": "GUIDE-CALIBRATION",
+    "title": "校准记录核对",
+    "content": "分析异常时可建议核对传感器编号、校准有效期、漂移和重复测量。当前样例没有真实校准记录，因此 Agent 只能提出取证建议，不能宣称校准已完成。",
+    "source": "data/project_handbook.json",
+    "section": "calibration",
+    "revision": "R1",
+    "status": "active",
+    "origin": "project_authored",
+    "limits": {}
+  },
+  {
+    "doc_id": "GUIDE-DRIFT",
+    "title": "趋势与漂移",
+    "content": "按时间顺序观察温度持续上升有助于提出调查线索。当前工具只做逐点限值和描述统计，没有实现控制图趋势报警；在规格内的漂移不自动记为超限。",
+    "source": "data/project_handbook.json",
+    "section": "drift",
+    "revision": "R1",
+    "status": "active",
+    "origin": "project_authored",
+    "limits": {}
+  },
+  {
+    "doc_id": "GUIDE-RETRY",
+    "title": "工具超时和重试",
+    "content": "批次查询最多尝试两次，持续模拟超时将进入人工复核。生产环境关闭故障注入，不会无限重试或伪造查询成功。模型服务失败会显示降级状态。",
+    "source": "data/project_handbook.json",
+    "section": "retry",
+    "revision": "R1",
+    "status": "active",
+    "origin": "project_authored",
+    "limits": {}
+  },
+  {
+    "doc_id": "GUIDE-HITL",
+    "title": "人工复核的含义",
+    "content": "人工复核可发布限制性说明或驳回报告；审批不改变缺失数据、不将验证失败变为通过，也不会让风险报告进入已验证结论记忆。",
+    "source": "data/project_handbook.json",
+    "section": "hitl",
+    "revision": "R1",
+    "status": "active",
+    "origin": "project_authored",
+    "limits": {}
+  },
+  {
+    "doc_id": "GUIDE-MEMORY",
+    "title": "短期和长期记忆",
+    "content": "短期记忆用Redis缓存最近消息，SQL保留消息事实源；长期记忆由用户主动保存，以SQL持久化和关键词相关性召回。长期记忆是历史背景，不能替代当前证据。",
+    "source": "data/project_handbook.json",
+    "section": "memory",
+    "revision": "R1",
+    "status": "active",
+    "origin": "project_authored",
+    "limits": {}
+  },
+  {
+    "doc_id": "GUIDE-EVIDENCE",
+    "title": "证据链与结果校验",
+    "content": "报告保留模拟规范版本、CSV真实行号和原始测量摘要。校验重新读取原始数据，并独立用 Decimal 计算参数偏差；引用成员校验不等同于证明大模型自然语言中的每个主张。",
+    "source": "data/project_handbook.json",
+    "section": "evidence",
+    "revision": "R1",
+    "status": "active",
+    "origin": "project_authored",
+    "limits": {}
+  },
+  {
+    "doc_id": "GUIDE-HEATING",
+    "title": "一阶升温模型边界",
+    "content": "一阶集中参数模型假设温度均匀、炉温和时间常数恒定，忽略空间传热、相变和固化反应。解析解与RK4一致只验证数值实现，不证明真实设备行为。",
+    "source": "data/project_handbook.json",
+    "section": "heating",
+    "revision": "R1",
+    "status": "active",
+    "origin": "project_authored",
+    "limits": {}
+  },
+  {
+    "doc_id": "GUIDE-DATASET",
+    "title": "模拟数据与验收集",
+    "content": "扩展数据包含487条测量、63个批次，具有正常、超温、超压、黏度偏差、多参数异常、缺失、无效数值、边界、漂移和单位疑似异常。按整批保留10个验收批次。",
+    "source": "data/project_handbook.json",
+    "section": "dataset",
+    "revision": "R1",
+    "status": "active",
+    "origin": "project_authored",
+    "limits": {}
+  },
+  {
+    "doc_id": "GUIDE-RAG",
+    "title": "混合召回与精排",
+    "content": "SiliconFlow BGE-M3返回1024维稠密向量；向量存于Milvus，BM25词法召回在本地执行，RRF融合后用BGE reranker精排。这里的BM25不能称为BGE-M3稀疏向量。",
+    "source": "data/project_handbook.json",
+    "section": "rag",
+    "revision": "R1",
+    "status": "active",
+    "origin": "project_authored",
+    "limits": {}
+  },
+  {
+    "doc_id": "GUIDE-ROUTING",
+    "title": "模型分工与成本控制",
+    "content": "普通对话与项目介绍用Flash；工艺问答先检索再回答；高风险字段提取用Qwen并核对原文；复杂规则用V4-Pro。视觉模型只在上传图片或文档解析时按需调用，精确视觉受日次数与页数限制。",
+    "source": "data/project_handbook.json",
+    "section": "routing",
+    "revision": "R1",
+    "status": "active",
+    "origin": "project_authored",
+    "limits": {}
+  },
+  {
+    "doc_id": "GUIDE-OCR",
+    "title": "文档解析与字段审核",
+    "content": "Paddle官方API负责版面和表格转写，输出仍可能有识别错误。字段需保留原文片段，抽取结果经过逐字值检查并由人工确认后，才能考虑纳入现行规范；当前不自动更新SOP。",
+    "source": "data/project_handbook.json",
+    "section": "ocr",
+    "revision": "R1",
+    "status": "active",
+    "origin": "project_authored",
+    "limits": {}
+  },
+  {
+    "doc_id": "GUIDE-DEPLOY",
+    "title": "服务器部署边界",
+    "content": "Ubuntu单机Docker Compose部署API、MySQL、Redis、Milvus及其依赖服务，模型通过远程API调用。4核8GiB适合受限并发的面试演示，不用于本机加载全部大模型，也不代表高可用生产架构。",
+    "source": "data/project_handbook.json",
+    "section": "deploy",
+    "revision": "R1",
+    "status": "active",
+    "origin": "project_authored",
+    "limits": {}
+  },
+  {
+    "doc_id": "GUIDE-LIMITS",
+    "title": "现阶段未实现的能力",
+    "content": "没有真实工厂数据、设备标定、正式行业规范授权或商业CAE集成；没有多租户RBAC、GPU自托管及完整生产监控。可以说明设计和验证方法，不能将演示包装成已上线的企业产线系统。",
+    "source": "data/project_handbook.json",
+    "section": "limits",
+    "revision": "R1",
+    "status": "active",
+    "origin": "project_authored",
+    "limits": {}
+  },
+  {
+    "doc_id": "GUIDE-KNOWLEDGE-ACCESS",
+    "title": "公司共享库、员工个人库与管理员审计权限",
+    "content": "工艺知识库分公司共享库和本人个人库。员工可上传和核对个人资料，相关提问自动检索本人已核对的固定版本，其他员工及管理员不能直接查看。员工主动提交共享申请后，管理员只审核提交的固定文本；通过后发布到公司库供所有账号使用，后续私人修订不会自动共享。管理员自己的上传资料可核对后直接发布，也可以管理公司资料和账号。只有管理员可以查看审计元数据，审计不展示员工的私有自由文本。个人会话、任务报告和记忆按本人隔离，防止通过检索结果绕过个人库权限。新知识不会自动替换现行SOP及工艺参数界限。",
+    "source": "data/project_handbook.json",
+    "section": "knowledge-access",
+    "revision": "R1",
+    "status": "active",
+    "origin": "project_authored",
+    "limits": {}
+  }
+]

@@ -1,0 +1,380 @@
+{
+  "B-101": {
+    "scenario": "normal",
+    "expected_findings": 0,
+    "expected_missing": 0,
+    "split": "demo"
+  },
+  "B-102": {
+    "scenario": "multiple",
+    "expected_findings": 6,
+    "expected_missing": 0,
+    "split": "demo"
+  },
+  "B-103": {
+    "scenario": "missing",
+    "expected_findings": 0,
+    "expected_missing": 1,
+    "split": "demo"
+  },
+  "B-201": {
+    "scenario": "normal",
+    "expected_findings": 0,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-202": {
+    "scenario": "high_temperature",
+    "expected_findings": 2,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-203": {
+    "scenario": "high_pressure",
+    "expected_findings": 2,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-204": {
+    "scenario": "high_viscosity",
+    "expected_findings": 2,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-205": {
+    "scenario": "multiple",
+    "expected_findings": 6,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-206": {
+    "scenario": "missing",
+    "expected_findings": 0,
+    "expected_missing": 2,
+    "split": "development"
+  },
+  "B-207": {
+    "scenario": "invalid",
+    "expected_findings": 0,
+    "expected_missing": 2,
+    "split": "development"
+  },
+  "B-208": {
+    "scenario": "boundary",
+    "expected_findings": 0,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-209": {
+    "scenario": "drift",
+    "expected_findings": 1,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-210": {
+    "scenario": "unit_suspect",
+    "expected_findings": 2,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-211": {
+    "scenario": "normal",
+    "expected_findings": 0,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-212": {
+    "scenario": "high_temperature",
+    "expected_findings": 2,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-213": {
+    "scenario": "high_pressure",
+    "expected_findings": 2,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-214": {
+    "scenario": "high_viscosity",
+    "expected_findings": 2,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-215": {
+    "scenario": "multiple",
+    "expected_findings": 6,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-216": {
+    "scenario": "missing",
+    "expected_findings": 0,
+    "expected_missing": 2,
+    "split": "development"
+  },
+  "B-217": {
+    "scenario": "invalid",
+    "expected_findings": 0,
+    "expected_missing": 2,
+    "split": "development"
+  },
+  "B-218": {
+    "scenario": "boundary",
+    "expected_findings": 0,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-219": {
+    "scenario": "drift",
+    "expected_findings": 1,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-220": {
+    "scenario": "unit_suspect",
+    "expected_findings": 2,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-221": {
+    "scenario": "normal",
+    "expected_findings": 0,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-222": {
+    "scenario": "high_temperature",
+    "expected_findings": 2,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-223": {
+    "scenario": "high_pressure",
+    "expected_findings": 2,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-224": {
+    "scenario": "high_viscosity",
+    "expected_findings": 2,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-225": {
+    "scenario": "multiple",
+    "expected_findings": 6,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-226": {
+    "scenario": "missing",
+    "expected_findings": 0,
+    "expected_missing": 2,
+    "split": "development"
+  },
+  "B-227": {
+    "scenario": "invalid",
+    "expected_findings": 0,
+    "expected_missing": 2,
+    "split": "development"
+  },
+  "B-228": {
+    "scenario": "boundary",
+    "expected_findings": 0,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-229": {
+    "scenario": "drift",
+    "expected_findings": 1,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-230": {
+    "scenario": "unit_suspect",
+    "expected_findings": 2,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-231": {
+    "scenario": "normal",
+    "expected_findings": 0,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-232": {
+    "scenario": "high_temperature",
+    "expected_findings": 2,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-233": {
+    "scenario": "high_pressure",
+    "expected_findings": 2,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-234": {
+    "scenario": "high_viscosity",
+    "expected_findings": 2,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-235": {
+    "scenario": "multiple",
+    "expected_findings": 6,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-236": {
+    "scenario": "missing",
+    "expected_findings": 0,
+    "expected_missing": 2,
+    "split": "development"
+  },
+  "B-237": {
+    "scenario": "invalid",
+    "expected_findings": 0,
+    "expected_missing": 2,
+    "split": "development"
+  },
+  "B-238": {
+    "scenario": "boundary",
+    "expected_findings": 0,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-239": {
+    "scenario": "drift",
+    "expected_findings": 1,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-240": {
+    "scenario": "unit_suspect",
+    "expected_findings": 2,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-241": {
+    "scenario": "normal",
+    "expected_findings": 0,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-242": {
+    "scenario": "high_temperature",
+    "expected_findings": 2,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-243": {
+    "scenario": "high_pressure",
+    "expected_findings": 2,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-244": {
+    "scenario": "high_viscosity",
+    "expected_findings": 2,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-245": {
+    "scenario": "multiple",
+    "expected_findings": 6,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-246": {
+    "scenario": "missing",
+    "expected_findings": 0,
+    "expected_missing": 2,
+    "split": "development"
+  },
+  "B-247": {
+    "scenario": "invalid",
+    "expected_findings": 0,
+    "expected_missing": 2,
+    "split": "development"
+  },
+  "B-248": {
+    "scenario": "boundary",
+    "expected_findings": 0,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-249": {
+    "scenario": "drift",
+    "expected_findings": 1,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-250": {
+    "scenario": "unit_suspect",
+    "expected_findings": 2,
+    "expected_missing": 0,
+    "split": "development"
+  },
+  "B-251": {
+    "scenario": "normal",
+    "expected_findings": 0,
+    "expected_missing": 0,
+    "split": "holdout"
+  },
+  "B-252": {
+    "scenario": "high_temperature",
+    "expected_findings": 2,
+    "expected_missing": 0,
+    "split": "holdout"
+  },
+  "B-253": {
+    "scenario": "high_pressure",
+    "expected_findings": 2,
+    "expected_missing": 0,
+    "split": "holdout"
+  },
+  "B-254": {
+    "scenario": "high_viscosity",
+    "expected_findings": 2,
+    "expected_missing": 0,
+    "split": "holdout"
+  },
+  "B-255": {
+    "scenario": "multiple",
+    "expected_findings": 6,
+    "expected_missing": 0,
+    "split": "holdout"
+  },
+  "B-256": {
+    "scenario": "missing",
+    "expected_findings": 0,
+    "expected_missing": 2,
+    "split": "holdout"
+  },
+  "B-257": {
+    "scenario": "invalid",
+    "expected_findings": 0,
+    "expected_missing": 2,
+    "split": "holdout"
+  },
+  "B-258": {
+    "scenario": "boundary",
+    "expected_findings": 0,
+    "expected_missing": 0,
+    "split": "holdout"
+  },
+  "B-259": {
+    "scenario": "drift",
+    "expected_findings": 1,
+    "expected_missing": 0,
+    "split": "holdout"
+  },
+  "B-260": {
+    "scenario": "unit_suspect",
+    "expected_findings": 2,
+    "expected_missing": 0,
+    "split": "holdout"
+  }
+}

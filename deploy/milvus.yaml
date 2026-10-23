@@ -1,0 +1,6 @@
+# Small demo collection on 4 vCPU / 8 GiB ECS; validate limits under load.
+queryNode:
+  mmap:
+    enabled: true
+  cache:
+    memoryLimit: 512

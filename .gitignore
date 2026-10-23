@@ -1,0 +1,42 @@
+# Secrets / private settings
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*_known_hosts
+# State / exports / backups
+runtime/
+outputs/
+output/
+backups/
+artifacts/
+tls/
+tls-logs/
+public-check/
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+*.sqlite3-*
+*.sql
+# Environments / caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.uv-cache/
+.cache/
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

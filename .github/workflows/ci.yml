@@ -1,0 +1,29 @@
+name: CI
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  offline-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
+        with:
+          version: "0.12.3"
+          python-version: "3.12"
+          enable-cache: true
+      - name: Install locked environment
+        run: uv sync --frozen
+      - name: Check public files
+        run: uv run --frozen python -m scripts.check_publication
+      - name: Behavioral regression (offline)
+        run: uv run --frozen pytest -q --basetemp runtime/pytest
+      - name: Synthetic fixture counts
+        run: uv run --frozen python -m scripts.evaluate --split all --output runtime/evaluation/fixtures.json
+      - name: End-to-end fixture scenarios
+        run: uv run --frozen python -m scripts.smoke --output runtime/evaluation/smoke
+      - name: Scientific design without a model service
+        run: uv run --frozen python -m scripts.verify_heating_agent --offline --output runtime/evaluation/heating

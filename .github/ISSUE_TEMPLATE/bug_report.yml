@@ -1,0 +1,30 @@
+name: Reproducible bug
+description: Report a behavior using sanitized inputs.
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Observed and expected behavior
+      description: Include minimal synthetic input and the affected failure boundary.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Never paste credentials, full headers or database dumps.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Commit, Python, OS and sanitized configuration
+      description: Distinguish offline rules, mocked responses and actual models.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Relevant sanitized trace or test output

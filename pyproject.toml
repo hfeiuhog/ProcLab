@@ -1,0 +1,40 @@
+[project]
+name = "industrial-process-agent"
+version = "3.0.0"
+description = "Evidence-driven industrial agents, guarded analytics and scientific tools"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+  "fastapi>=0.115,<1",
+  "uvicorn[standard]>=0.30,<1",
+  "pydantic-settings>=2.6,<3",
+  "sqlalchemy>=2.0.36,<3",
+  "pymysql[rsa]>=1.1,<2",
+  "redis>=5.2,<7",
+  "pymilvus>=2.6,<2.7",
+  "langgraph>=1.0,<2",
+  "openai>=1.60,<3",
+  "fastembed>=0.7,<1",
+  "scipy>=1.14,<2",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8,<10",
+    "httpx>=0.27,<1",
+    "playwright>=1.50,<2",
+    "paramiko>=3.5,<5",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+markers = ["infrastructure: requires the Docker MySQL/Redis/Milvus services"]
+
+[[tool.uv.index]]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+default = true
+
+[tool.uv]
+package = false
