@@ -85,7 +85,7 @@ class ModelRouter:
                 first,last=cleaned.find('{'),cleaned.rfind('}')
                 if first<0 or last<=first: raise
                 content=json.loads(cleaned[first:last+1])
-                meta['format_repair']='json_envelope_removed_once' 
+                meta['format_repair']='json_envelope_removed_once'
         return content, meta
 
     def answer(self, state):

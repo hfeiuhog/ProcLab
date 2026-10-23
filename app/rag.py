@@ -74,7 +74,7 @@ class KnowledgeIndex:
         self.indexed = False
         self.embedding_model = None
         corpus = json.dumps(load_docs(), sort_keys=True, ensure_ascii=False)
-        signature = f'{settings.embedding_provider}:{settings.embedding_model}:{settings.embedding_dimension}:{corpus}' 
+        signature = f'{settings.embedding_provider}:{settings.embedding_model}:{settings.embedding_dimension}:{corpus}'
         self.collection = settings.milvus_collection + '_' + hashlib.sha256(signature.encode()).hexdigest()[:10]
 
     def close(self):

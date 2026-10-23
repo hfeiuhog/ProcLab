@@ -112,7 +112,7 @@ class TaskService:
         knowledge_versions=self.library.snapshot(owner_id)
         if resolved_intent=='chat' and intent=='auto':
             from .rag import retrieve
-            if evidence_document_ids or retrieve(question,limit=1,catalog=self.library.documents(knowledge_versions,owner_id)):resolved_intent='knowledge' 
+            if evidence_document_ids or retrieve(question,limit=1,catalog=self.library.documents(knowledge_versions,owner_id)):resolved_intent='knowledge'
         if resolved_intent in ("knowledge", "chat", "extract", "reasoning", "analytics", "optimization"):
             batch_id = ""
         if resolved_intent == "batch" and not batch_id:
